@@ -8,9 +8,6 @@ let budgetData = {
 let expenseChart = null;
 let currentUser = localStorage.getItem("currentUser") || null;
 
-/* =========================
-   STORAGE / USER HELPERS
-========================= */
 function getUsers() {
     return JSON.parse(localStorage.getItem("users")) || [];
 }
@@ -40,9 +37,6 @@ function saveBudgetData() {
     }
 }
 
-/* =========================
-   DISPLAY HELPERS
-========================= */
 function showApp() {
     document.getElementById("authSection").style.display = "none";
     document.getElementById("appSection").style.display = "block";
@@ -68,9 +62,6 @@ function formatCurrency(value) {
     return "₱" + Number(value).toFixed(2);
 }
 
-/* =========================
-   CHART FUNCTIONS
-========================= */
 function updateChart() {
     const chartContainer = document.getElementById("chartContainer");
 
@@ -122,9 +113,6 @@ function updateChart() {
     });
 }
 
-/* =========================
-   UI RENDER FUNCTIONS
-========================= */
 function renderExpenseTable() {
     const tableBody = document.getElementById("expenseTableBody");
     tableBody.innerHTML = "";
@@ -171,9 +159,6 @@ function updateUI() {
     updateChart();
 }
 
-/* =========================
-   AUTH FUNCTIONS
-========================= */
 function switchToRegister() {
     document.getElementById("loginBox").style.display = "none";
     document.getElementById("registerBox").style.display = "block";
@@ -260,9 +245,6 @@ function logoutUser() {
     showAuth();
 }
 
-/* =========================
-   BUDGET FUNCTIONS
-========================= */
 function addBudget(event) {
     event.preventDefault();
 
@@ -332,9 +314,6 @@ function resetAll() {
     updateUI();
 }
 
-/* =========================
-   EXPENSE ACTIONS
-========================= */
 function enableEditMode(row, expense) {
     row.querySelector(".title-cell").innerHTML = `
         <input type="text" class="form-control form-control-sm edit-title" value="${expense.title}">
@@ -384,25 +363,21 @@ function saveEditedExpense(row, expense) {
         return;
     }
 
-    // Remove old values first
     budgetData.totalExpenses -= expense.amount;
     budgetData.budgetLeft += expense.amount;
 
     if (newAmount > budgetData.budgetLeft) {
         alert("Not enough budget.");
 
-        // Revert old values
         budgetData.totalExpenses += expense.amount;
         budgetData.budgetLeft -= expense.amount;
         return;
     }
 
-    // Update expense data
     expense.title = newTitle;
     expense.amount = newAmount;
     expense.category = newCategory;
 
-    // Apply new values
     budgetData.totalExpenses += newAmount;
     budgetData.budgetLeft -= newAmount;
 
@@ -441,9 +416,6 @@ function handleExpenseTableActions(event) {
     }
 }
 
-/* =========================
-   CHART TOGGLE
-========================= */
 function toggleChart() {
     const chartContainer = document.getElementById("chartContainer");
 
@@ -456,9 +428,6 @@ function toggleChart() {
     updateChart();
 }
 
-/* =========================
-   PASSWORD TOGGLE
-========================= */
 function toggleLoginPassword() {
     const loginPassword = document.getElementById("loginPassword");
     loginPassword.type = this.checked ? "text" : "password";
@@ -473,9 +442,6 @@ function toggleRegisterPassword() {
     confirmPassword.type = inputType;
 }
 
-/* =========================
-   APP INITIALIZATION
-========================= */
 function setupEventListeners() {
     // Auth switch
     document.getElementById("showRegister").addEventListener("click", function (event) {
@@ -488,24 +454,19 @@ function setupEventListeners() {
         switchToLogin();
     });
 
-    // Password toggles
     document.getElementById("showLoginPassword").addEventListener("change", toggleLoginPassword);
     document.getElementById("showRegisterPassword").addEventListener("change", toggleRegisterPassword);
 
-    // Auth submit
     document.getElementById("registerForm").addEventListener("submit", registerUser);
     document.getElementById("loginForm").addEventListener("submit", loginUser);
 
-    // Main app submit
     document.getElementById("budgetForm").addEventListener("submit", addBudget);
     document.getElementById("expenseForm").addEventListener("submit", addExpense);
 
-    // Buttons
     document.getElementById("logoutBtn").addEventListener("click", logoutUser);
     document.getElementById("resetBtn").addEventListener("click", resetAll);
     document.getElementById("toggleChartBtn").addEventListener("click", toggleChart);
 
-    // Expense table actions
     document.getElementById("expenseTableBody").addEventListener("click", handleExpenseTableActions);
 }
 
@@ -526,16 +487,12 @@ document.addEventListener("DOMContentLoaded", function () {
     autoLoginIfPossible();
 });
 
-// -----------------------------
-// PWA INSTALL PROMPT
-// -----------------------------
 let deferredPrompt;
 
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
 
-  // Show Install Button
   const installBtn = document.createElement('button');
   installBtn.textContent = 'Install App';
   installBtn.id = 'installBtn';
@@ -550,9 +507,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
   });
 });
 
-// -----------------------------
-// REGISTER SERVICE WORKER
-// -----------------------------
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./service-worker.js')
