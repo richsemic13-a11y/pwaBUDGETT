@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    min-height: 100vh;
+    background-attachment: fixed;
+    color: #333;
+}
+
+/* Remove number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* =========================
+   AUTH SECTION
+========================= */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.auth-card h2,
+.auth-card h4 {
+    color: #444;
+    font-weight: 600;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+.top-bar {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.top-bar-inner {
+    width: 100%;
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.profile-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #4e79a7;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.profile-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    word-break: break-word;
+}
+
+.logout-btn-custom {
+    min-width: 90px;
+    border-radius: 8px;
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+.main-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 700;
+    color: #646464;
+    text-shadow: 1px 1px #fff;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+.budget-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.add-budget-container,
+.add-expense-container,
+.display-container {
+    background: rgba(255, 255, 255, 0.78);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.add-budget-container h4,
+.add-expense-container h4,
+.display-container h5 {
+    font-weight: 600;
+    color: #3b4a6b;
+}
+
+/* =========================
+   SUMMARY SECTION
+========================= */
+.heading .alert {
+    font-weight: 500;
+}
+
+/* =========================
+   TABLE SECTION
+========================= */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    background: rgba(255, 255, 255, 0.95);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.table thead th {
+    background: #f2f6ff;
+    color: #3b4a6b;
+}
+
+.table th,
+.table td {
+    text-align: center;
+    vertical-align: middle !important;
+    white-space: nowrap;
+}
+
+.action-cell button {
+    margin: 2px;
+}
+
+/* =========================
+   CHART SECTION
+========================= */
+#chartContainer {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .auth-card {
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .top-bar-inner {
+        padding: 10px 12px;
+    }
+
+    .profile-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
+    }
+
+    .profile-name {
+        font-size: 14px;
+        max-width: 180px;
+    }
+
+    .logout-btn-custom {
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+
+    .main-title {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .budget-container {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .add-budget-container,
+    .add-expense-container,
+    .display-container {
+        padding: 15px;
+    }
+
+    .heading .alert {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .table {
+        font-size: 12px;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+}
