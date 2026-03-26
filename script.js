@@ -240,6 +240,10 @@ function loginUser(event) {
 }
 
 function logoutUser() {
+    const confirmLogout = confirm("Are you sure you want to logout?");
+
+    if (!confirmLogout) return;
+
     localStorage.removeItem("currentUser");
     currentUser = null;
     showAuth();
